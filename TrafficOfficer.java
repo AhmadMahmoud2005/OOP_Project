@@ -9,19 +9,18 @@ public class TrafficOfficer {
     private String name;
     private String contactInfo;
     private String assignedZone;
-    public static int []zoneIdd=new int[5];
-    public static String []typearr=new String[5];
+    public static int[] zoneIdd = new int[5];
+    public static String[] typearr = new String[5];
 
-  public static ArrayList<TrafficViolation>myArr=new ArrayList<>();
-  Scanner scanner=new Scanner(System.in);
-private int count=0;
+    public static ArrayList<TrafficViolation> ViolationsArr = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+    private int count=0;
     public TrafficOfficer(int id, String name, String contactInfo, String assignedZone) {
         this.id = id;
         this.name = name;
         this.contactInfo = contactInfo;
         this.assignedZone = assignedZone;
     }
-
 
     public int getId() {
         return id;
@@ -59,37 +58,36 @@ private int count=0;
     String check;
     public void record(){
       do {
-          System.out.println("enter violationId");
+          System.out.println("enter violationId: ");
           int id1=scanner.nextInt();
-          System.out.println("enter vehicleId");
+          System.out.println("enter vehicleId: ");
           int id2=scanner.nextInt();
-          System.out.println("enter zoneId");
+          System.out.println("enter zoneId: ");
           int id3=scanner.nextInt();
-          System.out.println("enter trafficOfficerId");
+          System.out.println("enter trafficOfficerId: ");
           int id4=scanner.nextInt();
 
-          System.out.println("enter violationType");
+          System.out.println("enter violationType: ");
           String type=scanner.next();
-          System.out.println("enter amount");
+          System.out.println("enter amount: ");
           double amount=scanner.nextDouble();
-          System.out.println("enter date");
+          System.out.println("enter date: ");
           String date=scanner.next();
           TrafficViolation violation=new TrafficViolation(id1,id2,id3,id4,type,date,amount);
-          myArr.add(violation);
-          System.out.println("Do you want to add another violation");
-          check=scanner.next();
-      }while (check.equals("yes"));
+          ViolationsArr.add(violation);
+          System.out.println("Do you want to add another violation: ");
+          check = scanner.next();
+      } while (check.equals("yes"));
 
 
     }
 
-
 public void viewViolations(){
-       System.out.println("enter trafficOfficerId\n");
+       System.out.println("enter trafficOfficerId: ");
       int id=scanner.nextInt();
-     for(int i=0;i< myArr.size();i++){
-         if(myArr.get(i).getTrafficOfficerId()==id){
-             System.out.println(myArr.get(i));
+     for(int i=0;i< ViolationsArr.size();i++){
+         if(ViolationsArr.get(i).getTrafficOfficerId()==id){
+             System.out.println(ViolationsArr.get(i));
          }
 
      }
@@ -141,9 +139,5 @@ public void viewViolations(){
 
         return mostFrequent; 
     }
-
-
-
-
 }
 

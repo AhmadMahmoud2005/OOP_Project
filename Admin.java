@@ -4,8 +4,7 @@ import java.util.*;
 import java.io.*;
 public class Admin {
     Scanner scanner=new Scanner(System.in);
-
-  public ArrayList<TrafficLight>  arr = new ArrayList();
+    public ArrayList<TrafficLight> arr = new ArrayList<>();
 
     public void addTrafficLight() {
 
@@ -13,18 +12,17 @@ public class Admin {
        // int index = 0;
 
         do {
-
-            System.out.println("enter trafficId");
+            System.out.println("enter trafficId: ");
             String id = scanner.next();
-            System.out.println("enter location");
+            System.out.println("enter location: ");
             String location = scanner.next();
-            System.out.println("enter status");
+            System.out.println("enter status: ");
             String status = scanner.next();
-            System.out.println("enter duration");
+            System.out.println("enter duration: ");
             String duration = scanner.next();
-            TrafficLight t=new TrafficLight(id,location,status,duration);
+            TrafficLight t = new TrafficLight(id,location,status,duration);
             arr.add(t);
-            System.out.println("Do you want to add another trafficLight");
+            System.out.println("Do you want to add another trafficLight: ");
             check = scanner.next();
         } while (check.equals("yes"));
 
@@ -34,16 +32,16 @@ public class Admin {
     public void updateTraffic(){
         int index=-1;
         Scanner scanner=new Scanner(System.in);
-        System.out.println("enter id of traffic you want to update");
+        System.out.println("enter id of traffic you want to update: ");
         String id=scanner.next();
 
-            System.out.println("enter new id \n");
+            System.out.println("enter new id: ");
             String id2=scanner.next();
-            System.out.println("enter new status\n");
+            System.out.println("enter new status: ");
             String status=scanner.next();
-            System.out.println("enter new duration\n");
+            System.out.println("enter new duration: ");
             String duration= scanner.next();
-            System.out.println("enter new location");
+            System.out.println("enter new location: ");
             String location=scanner.next();
             TrafficLight t2=new TrafficLight(id2,location,status,duration);
         for(int i=0;i<arr.size();i++){
@@ -54,26 +52,17 @@ public class Admin {
             }
         }
         arr.set(index,t2);
-
-
-
     }
 
-
-
-
-
     public void delete() {
-        System.out.println("enter id of trafficLight you want to delete ");
+        System.out.println("enter id of trafficLight you want to delete: ");
         String id = scanner.next();
 
         for(int i=0;i< arr.size();i++){
             if(arr.get(i).getId().equals(id)){
                 arr.remove(i);
             }
-
         }
-
     }
 
     public void viewViolations() {
@@ -89,7 +78,6 @@ public class Admin {
 
 
        */
-
         }
 
 
