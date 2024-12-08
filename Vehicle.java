@@ -1,17 +1,22 @@
 package project;
 
+import java.util.ArrayList;
+
 public class Vehicle {
 
     private int vehicleId;
     private String type;
     private String licensePlate;
 
-    Owner owner=new Owner();
-public Vehicle(int vehicleId,String type,String licensePlate){
+    private int ownerId;
+ //   Owner owner=new Owner();
+  public  static ArrayList<Vehicle>vehicleArr=new ArrayList<>();
+public Vehicle(int vehicleId,String type,String licensePlate,int ownerId){
     this.vehicleId=vehicleId;
     this.type=type;
     this.licensePlate=licensePlate;
-
+this.ownerId=ownerId;
+vehicleArr.add(this);
 }
 
     public void setVehicleId(int vehicleId) {
@@ -36,5 +41,15 @@ public Vehicle(int vehicleId,String type,String licensePlate){
 
     public String getLicensePlate() {
         return licensePlate;
+    }
+
+
+    public String toString() {
+        return
+                 + vehicleId +
+                        "     " + type + "    " +
+                         licensePlate + "     " +
+                         ownerId+"\n"
+                ;
     }
 }
