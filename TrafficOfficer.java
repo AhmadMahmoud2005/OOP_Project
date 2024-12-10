@@ -3,24 +3,32 @@ package project;
 import java.io.*;
 import java.util.*;
 
-public class TrafficOfficer {
+public class  TrafficOfficer extends Parent{
 
-    private int id;
-    private String name;
-    private String contactInfo;
+    //private int id;
+    //private String name;
+    //private String contactInfo;
     private String assignedZone;
-    public static int[] zoneIdd = new int[5];
-    public static String[] typearr = new String[5];
+    public static int []zoneIdd=new int[5];
+    public static String []typearr=new String[5];
 
-    public static ArrayList<TrafficViolation> ViolationsArr = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
-    private int count=0;
+  public static ArrayList<TrafficViolation>violationArr=new ArrayList<>();
+  Scanner scanner=new Scanner(System.in);
+private int count=0;
+
+
+public TrafficOfficer(){
+
+
+
+}
     public TrafficOfficer(int id, String name, String contactInfo, String assignedZone) {
         this.id = id;
         this.name = name;
         this.contactInfo = contactInfo;
         this.assignedZone = assignedZone;
     }
+
 
     public int getId() {
         return id;
@@ -58,36 +66,37 @@ public class TrafficOfficer {
     String check;
     public void record(){
       do {
-          System.out.println("enter violationId: ");
+          System.out.println("enter violationId");
           int id1=scanner.nextInt();
-          System.out.println("enter vehicleId: ");
+          System.out.println("enter vehicleId");
           int id2=scanner.nextInt();
-          System.out.println("enter zoneId: ");
+          System.out.println("enter zoneId");
           int id3=scanner.nextInt();
-          System.out.println("enter trafficOfficerId: ");
+          System.out.println("enter trafficOfficerId");
           int id4=scanner.nextInt();
 
-          System.out.println("enter violationType: ");
+          System.out.println("enter violationType");
           String type=scanner.next();
-          System.out.println("enter amount: ");
+          System.out.println("enter amount");
           double amount=scanner.nextDouble();
-          System.out.println("enter date: ");
+          System.out.println("enter date");
           String date=scanner.next();
           TrafficViolation violation=new TrafficViolation(id1,id2,id3,id4,type,date,amount);
-          ViolationsArr.add(violation);
-          System.out.println("Do you want to add another violation: ");
-          check = scanner.next();
-      } while (check.equals("yes"));
+          violationArr.add(violation);
+          System.out.println("Do you want to add another violation");
+          check=scanner.next();
+      }while (check.equals("yes"));
 
 
     }
 
+
 public void viewViolations(){
-       System.out.println("enter trafficOfficerId: ");
+       System.out.println("enter trafficOfficerId\n");
       int id=scanner.nextInt();
-     for(int i=0;i< ViolationsArr.size();i++){
-         if(ViolationsArr.get(i).getTrafficOfficerId()==id){
-             System.out.println(ViolationsArr.get(i));
+     for(int i=0;i< violationArr.size();i++){
+         if(violationArr.get(i).getTrafficOfficerId()==id){
+             System.out.println(violationArr.get(i));
          }
 
      }
@@ -139,5 +148,71 @@ public void viewViolations(){
 
         return mostFrequent; 
     }
+
+    public static void saveViolationsToFile(ArrayList<TrafficViolation> violations, String fileName) {
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            for (TrafficViolation violation : violations) {
+                // Save each violation as a single line
+                writer.println(violation.getViolationId() + "," +
+                        violation.getVehicleId() + "," +
+                        violation.getViolationType() + "," +
+                        violation.getTrafficOfficerId() + "," +
+                        violation.getFineAmount() + "," +
+                        violation.getDate()+","+
+                        violation.getZoneId()+ ","
+
+                );
+            }
+            System.out.println("Traffic violations saved successfully  " );
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+
+
+
+    public static ArrayList<TrafficViolation> readViolationsFromFile(String fileName) {
+        ArrayList<TrafficViolation> violations = new ArrayList<>();
+
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                // Read the next line from the file
+                String line = scanner.nextLine();
+
+                // Split the line into parts using the comma as a delimiter
+                String[] parts = line.split(",");
+
+                // Parse each property
+                int violationId = Integer.parseInt(parts[0]);
+                int vehicleId = Integer.parseInt(parts[1]);
+                String violationType = parts[2];
+                int trafficOfficerId = Integer.parseInt(parts[3]);
+                double fineAmount = Double.parseDouble(parts[4]);
+                String date = parts[5]; // Read date as String
+                int zoneId = Integer.parseInt(parts[6]); // For the repeated fine field
+
+                // Create a TrafficViolation object
+                TrafficViolation violation = new TrafficViolation(violationId,vehicleId,zoneId,trafficOfficerId,violationType,date,fineAmount);
+
+
+                // Add the violation object to the list
+                violations.add(violation);
+            }
+            System.out.println("Traffic violations loaded successfully  " );
+        } catch (IOException e) {
+            System.err.println("Error reading from file: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error parsing file data: " + e.getMessage());
+        }
+
+        return violations;
+    }
+
+
+
+
+
+
 }
 
