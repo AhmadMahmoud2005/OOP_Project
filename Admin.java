@@ -3,14 +3,14 @@ package project;
 import java.util.*;
 import java.io.*;
 public class Admin {
-    Scanner scanner=new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
-  public ArrayList<TrafficLight>  arr = new ArrayList();
+    public static ArrayList<TrafficLight> arr = new ArrayList();
 
     public void addTrafficLight() {
 
         String check;
-       // int index = 0;
+        // int index = 0;
 
         do {
 
@@ -22,7 +22,7 @@ public class Admin {
             String status = scanner.next();
             System.out.println("enter duration");
             String duration = scanner.next();
-            TrafficLight t=new TrafficLight(id,location,status,duration);
+            TrafficLight t = new TrafficLight(id, location, status, duration);
             arr.add(t);
             System.out.println("Do you want to add another trafficLight");
             check = scanner.next();
@@ -31,44 +31,39 @@ public class Admin {
     }
 
 
-    public void updateTraffic(){
-        int index=-1;
-        Scanner scanner=new Scanner(System.in);
+    public void updateTraffic() {
+        int index = -1;
+        Scanner scanner = new Scanner(System.in);
         System.out.println("enter id of traffic you want to update");
-        String id=scanner.next();
+        String id = scanner.next();
 
-            System.out.println("enter new id \n");
-            String id2=scanner.next();
-            System.out.println("enter new status\n");
-            String status=scanner.next();
-            System.out.println("enter new duration\n");
-            String duration= scanner.next();
-            System.out.println("enter new location");
-            String location=scanner.next();
-            TrafficLight t2=new TrafficLight(id2,location,status,duration);
-        for(int i=0;i<arr.size();i++){
-            if(arr.get(i).getId().equals(id))
-            {
-                index=i;
+        System.out.println("enter new id \n");
+        String id2 = scanner.next();
+        System.out.println("enter new status\n");
+        String status = scanner.next();
+        System.out.println("enter new duration\n");
+        String duration = scanner.next();
+        System.out.println("enter new location");
+        String location = scanner.next();
+        TrafficLight t2 = new TrafficLight(id2, location, status, duration);
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getId().equals(id)) {
+                index = i;
                 break;
             }
         }
-        arr.set(index,t2);
-
+        arr.set(index, t2);
 
 
     }
-
-
-
 
 
     public void delete() {
         System.out.println("enter id of trafficLight you want to delete ");
         String id = scanner.next();
 
-        for(int i=0;i< arr.size();i++){
-            if(arr.get(i).getId().equals(id)){
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getId().equals(id)) {
                 arr.remove(i);
             }
 
@@ -83,30 +78,22 @@ public class Admin {
         if (choice.equals("vehicle")) {
             System.out.println("enter vehicleId\n");
             int id = scanner.nextInt();
-            for(int i=0;i<TrafficOfficer.violationArr.size();i++)
-             if(TrafficOfficer.violationArr.get(i).getTrafficOfficerId()==id){
-                 System.out.println(TrafficOfficer.violationArr.get(i));
-             }
+            for (int i = 0; i < TrafficOfficer.violationArr.size(); i++)
+                if (TrafficOfficer.violationArr.get(i).getTrafficOfficerId() == id) {
+                    System.out.println(TrafficOfficer.violationArr.get(i));
+                }
 
-                } else if (choice.equals("zone")) {
+        } else if (choice.equals("zone")) {
             System.out.println("enter zoneId\n");
-int zoneId= scanner.nextInt();
-            for(int i=0;i<TrafficOfficer.violationArr.size();i++)
-                if(TrafficOfficer.violationArr.get(i).getTrafficOfficerId()==zoneId){
+            int zoneId = scanner.nextInt();
+            for (int i = 0; i < TrafficOfficer.violationArr.size(); i++)
+                if (TrafficOfficer.violationArr.get(i).getTrafficOfficerId() == zoneId) {
                     System.out.println(TrafficOfficer.violationArr.get(i));
                 }
 
 
         }
     }
-
-
-
-
-
-
-
-
 
 
     public void generateReport() {
@@ -134,7 +121,7 @@ int zoneId= scanner.nextInt();
         }
 
         String mostFrequent2 = TrafficOfficer.violationArr.get(0).getViolationType();
- int maxCount2=0;
+        int maxCount2 = 0;
 
         // تكرار كل عنصر في القائمة
         for (int i = 0; i < TrafficOfficer.violationArr.size(); i++) {
@@ -143,7 +130,7 @@ int zoneId= scanner.nextInt();
 
             // حساب عدد مرات تكرار العنصر
             for (int j = 0; j < TrafficOfficer.violationArr.size(); j++) {
-                if (TrafficOfficer.violationArr.get(j).getViolationType().equals(currentElement) ) {
+                if (TrafficOfficer.violationArr.get(j).getViolationType().equals(currentElement)) {
                     count++;
                 }
             }
@@ -156,19 +143,55 @@ int zoneId= scanner.nextInt();
         }
 
 
+        System.out.println("the highest density zone is with id :" + mostFrequent);
 
-        System.out.println("the highest density zone is with id :"+mostFrequent);
-
-        System.out.println("the most frequent type of violation :"+mostFrequent2);
-
-
+        System.out.println("the most frequent type of violation :" + mostFrequent2);
 
 
     }
 
+
+    public static void saveTrafficLightsToFile(ArrayList<TrafficLight> trafficLights, String fileName) {
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            for (TrafficLight light : trafficLights) {
+                writer.println(light.toString());
+            }
+            System.out.println("Traffic lights saved successfully to " + fileName);
+        } catch (IOException e) {
+            System.err.println("Error while saving to file: " + e.getMessage());
+        }
+
+    }
+
+    // عشان اقرأ من الملف
+    public static ArrayList<TrafficLight> readTrafficLightsFromFile(String fileName) {
+        ArrayList<TrafficLight> trafficLights = new ArrayList<>();
+
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+
+                if (parts.length == 4) {
+                    String id = parts[0];
+                    String location = parts[1];
+                    String status = parts[2];
+                    String duration = parts[3];
+
+                    TrafficLight light = new TrafficLight(id, location, status, duration);
+                    trafficLights.add(light);
+                }
+            }
+            System.out.println("Traffic lights loaded successfully from " + fileName);
+        } catch (IOException e) {
+            System.err.println("Error while reading from file: " + e.getMessage());
+        }
+
+        return trafficLights;
     }
 
 
+}
 
 
 
