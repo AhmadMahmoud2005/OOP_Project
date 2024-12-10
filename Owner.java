@@ -13,6 +13,12 @@ public class  Owner extends Parent {
     private String password;
  public Vehicle arr[]=new Vehicle[3];
 
+public Owner(){
+
+
+
+
+}
 
  public Owner(int ownerId,String name,String email,String phone,String address,String password){
      this.id=ownerId;
@@ -23,6 +29,7 @@ public class  Owner extends Parent {
      this.password=password;
 
  }
+
 
 
 
@@ -55,9 +62,6 @@ public class  Owner extends Parent {
         return phone;
     }
 
-    Scanner scanner=new Scanner(System.in);
-    public ArrayList<Owner>owner=new ArrayList<>();
-
 
     @Override
     public void viewViolations() {
@@ -70,6 +74,15 @@ public class  Owner extends Parent {
         }
 
     }
+
+
+
+
+    Scanner scanner=new Scanner(System.in);
+    public ArrayList<Owner>owner=new ArrayList<>();
+
+
+
 
     public void logIn() {
     Boolean check=false;
@@ -89,6 +102,7 @@ public class  Owner extends Parent {
         String contact=scanner.next();
         System.out.println("please,enter your address");
         String address=scanner.next();
+        System.out.println("successfully");
         Owner owner1=new Owner(id,name,email,phone,address,password);
 owner.add(owner1);
     }
@@ -107,6 +121,7 @@ owner.add(owner1);
                    if(owner.get(i).name.equals(name)&&owner.get(i).password.equals(password)){
                        ch=true;
                        System.out.println("successfully");
+                       break;
                    }
                }
 
