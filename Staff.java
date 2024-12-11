@@ -6,8 +6,4 @@ public abstract class Staff {
     public String contactInfo;
 
     public abstract void viewViolations();
-
-
-
-
 }
