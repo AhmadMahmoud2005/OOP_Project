@@ -3,7 +3,7 @@ package project;
 import java.io.*;
 import java.util.*;
 
-public class  TrafficOfficer extends Parent{
+public class TrafficOfficer extends Staff {
 
     //private int id;
     //private String name;

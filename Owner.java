@@ -3,7 +3,7 @@ package project;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-public class  Owner extends Parent {
+public class Owner extends Staff {
     //private int ownerId;
     //private String name;
 

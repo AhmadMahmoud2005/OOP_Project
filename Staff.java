@@ -1,6 +1,6 @@
 package project;
 
-public abstract class Parent {
+public abstract class Staff {
     public int id;
     public String name;
     public String contactInfo;
