@@ -1,0 +1,29 @@
+/* global-style.css */
+.root {
+    -fx-font-size: 16px; /* Apply default font size to all elements */
+    -fx-font-family: "Arial"; /* Set a default font family */
+    -fx-background-image: url("https://c8.alamy.com/comp/2H5H9XA/creative-heart-shaped-traffic-light-red-light-displaying-heart-symbol-in-akureyri-iceland-a-cool-and-welcoming-thing-for-motorist-standing-in-the-q-2H5H9XA.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover; /* Scales the image to fit the area */
+    -fx-background-position: center center; /* Centers the image */
+    -fx-background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent overlay */
+    -fx-background-blend-mode: overlay; /* Blend the image and the overlay */
+    -fx-text-fill: #000;
+}
+
+.button {
+    -fx-text-fill: #000;
+}
+
+.label {
+    -fx-text-fill: #000;
+    -fx-padding: 20px 0;
+}
+
+/*.text-field {*/
+/*    -fx-font-size: 16px; !* Increase font size for text fields *!*/
+/*}*/
+
+.table-view {
+    -fx-font-size: 16px; /* Style TableView fonts */
+}

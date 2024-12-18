@@ -1,0 +1,5 @@
+101,John Doe,john@example.com,null,123 Main St,123,234|Car|ABC-1234|101;561|Motorcycle|XYZ-5678|101
+102,Jane Smith,jane@example.com,null,456 Elm St,securePass,152|Car|ABC-1234|101;862|Truck|XYZ-5678|102
+103,Ahmad,adf@example.com,null,sdfsdf,321,426|Car|ABC-1234|103
+104,Abdullah,wetwt@example.com,null,wetwtrs,000,105|Car|ABC-1234|104
+6756,yousef,dghdfg,null,gdfgd,1234,67560|Car|ABC-1234|6756

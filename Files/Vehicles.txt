@@ -1,0 +1,14 @@
+234     Car    ABC-1234     
+
+561     Motorcycle    XYZ-5678     
+
+152     Car    ABC-1234     
+
+862     Truck    XYZ-5678     
+
+426     Car    ABC-1234     
+
+105     Car    ABC-1234     
+
+67560     Car    ABC-1234     
+
