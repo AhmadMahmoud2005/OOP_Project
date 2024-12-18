@@ -12,16 +12,10 @@ public class TrafficOfficer extends Staff {
     public static int []zoneIdd=new int[5];
     public static String []typearr=new String[5];
 
-  public static ArrayList<TrafficViolation>violationArr=new ArrayList<>();
-  Scanner scanner=new Scanner(System.in);
-private int count=0;
+    public static ArrayList<TrafficViolation>violationArr=new ArrayList<>();
+    Scanner scanner=new Scanner(System.in);
+    private int count = 0;
 
-
-public TrafficOfficer(){
-
-
-
-}
     public TrafficOfficer(int id, String name, String contactInfo, String assignedZone) {
         this.id = id;
         this.name = name;
@@ -150,7 +144,7 @@ public void viewViolations(){
     }
 
     public static void saveViolationsToFile(ArrayList<TrafficViolation> violations, String fileName) {
-        try (PrintWriter writer = new PrintWriter(fileName)) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (TrafficViolation violation : violations) {
                 // Save each violation as a single line
                 writer.println(violation.getViolationId() + "," +
@@ -197,7 +191,7 @@ public void viewViolations(){
 
 
                 // Add the violation object to the list
-                violations.add(violation);
+                violationArr.add(violation);
             }
             System.out.println("Traffic violations loaded successfully  " );
         } catch (IOException e) {

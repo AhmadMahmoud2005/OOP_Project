@@ -1,11 +1,13 @@
 package project;
 
+import javafx.util.Pair;
+
 import java.util.*;
 import java.io.*;
 public class Admin {
     Scanner scanner = new Scanner(System.in);
 
-    public static ArrayList<TrafficLight> arr = new ArrayList();
+    public static ArrayList<TrafficLight> arr = new ArrayList<>();
 
     public void addTrafficLight() {
 
@@ -96,7 +98,7 @@ public class Admin {
     }
 
 
-    public void generateReport() {
+    static public Pair<String, String> generateReport() {
 
         int mostFrequent = TrafficOfficer.violationArr.get(0).getZoneId();
         int maxCount = 0;
@@ -147,12 +149,12 @@ public class Admin {
 
         System.out.println("the most frequent type of violation :" + mostFrequent2);
 
-
+        return new Pair<>(Integer.toString(mostFrequent), mostFrequent2);
     }
 
 
     public static void saveTrafficLightsToFile(ArrayList<TrafficLight> trafficLights, String fileName) {
-        try (PrintWriter writer = new PrintWriter(fileName)) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, false))) {
             for (TrafficLight light : trafficLights) {
                 writer.println(light.toString());
             }
@@ -165,7 +167,7 @@ public class Admin {
 
     // عشان اقرأ من الملف
     public static ArrayList<TrafficLight> readTrafficLightsFromFile(String fileName) {
-        ArrayList<TrafficLight> trafficLights = new ArrayList<>();
+//        ArrayList<TrafficLight> trafficLights = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
@@ -179,7 +181,7 @@ public class Admin {
                     String duration = parts[3];
 
                     TrafficLight light = new TrafficLight(id, location, status, duration);
-                    trafficLights.add(light);
+                    arr.add(light);
                 }
             }
             System.out.println("Traffic lights loaded successfully from " + fileName);
@@ -187,7 +189,7 @@ public class Admin {
             System.err.println("Error while reading from file: " + e.getMessage());
         }
 
-        return trafficLights;
+        return arr;
     }
 
 

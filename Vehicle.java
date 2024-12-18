@@ -48,6 +48,7 @@ vehicleArr.add(this);
     public String getLicensePlate() {
         return licensePlate;
     }
+    public int getOwnerId() { return ownerId; }
 
 
 
@@ -80,7 +81,7 @@ vehicleArr.add(this);
                     int ownerId = Integer.parseInt(parts[3]);
 
                     Vehicle vehicle = new Vehicle(vehicleId, type, licensePlate, ownerId);
-                    vehicles.add(vehicle);
+                    vehicleArr.add(vehicle);
                 }
             }
             System.out.println("Data loaded successfully  " );
@@ -100,8 +101,7 @@ vehicleArr.add(this);
         return
                  + vehicleId +
                         "     " + type + "    " +
-                         licensePlate + "     " +
-                         ownerId+"\n"
+                         licensePlate + "     " + "\n"
                 ;
     }
 }
